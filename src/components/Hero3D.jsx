@@ -1,27 +1,15 @@
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import { useRef } from "react";
-
-function FloatingSphere() {
-  const meshRef = useRef();
-
-  useFrame(() => {
-    meshRef.current.rotation.y += 0.01;
-    meshRef.current.rotation.x += 0.005;
-    meshRef.current.position.y = Math.sin(Date.now() * 0.001) * 0.5;
-  });
-
-  return (
-    <mesh ref={meshRef}>
-      {/* Icosahedron gives a cooler wireframe look than sphere */}
-      <icosahedronGeometry args={[1.5, 1]} />
-      {/* Royal blue accent color */}
-      <meshStandardMaterial color="#4169e1" wireframe />
-    </mesh>
-  );
-}
+import { useState } from "react";
+import Tilt from "react-parallax-tilt";
+import Avatar3D from "./Avatar3D";
 
 export default function Hero3D() {
+  const [clicked, setClicked] = useState(false);
+
+  const handleDollClick = () => {
+    setClicked(true);
+    setTimeout(() => setClicked(false), 1000); // Reset animation state after 1 second
+  };
+
   return (
     <div className="hero-section">
       <div className="hero-content animate-fade-up">
@@ -33,13 +21,11 @@ export default function Hero3D() {
         </p>
       </div>
 
-      <div className="canvas-container">
-        <Canvas>
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[2, 2, 2]} intensity={2} />
-          <FloatingSphere />
-          <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
-        </Canvas>
+      <div className="canvas-container doll-container">
+        {/* We replaced the 2D Tilt image with the new interactive 3D Avatar! */}
+        <Avatar3D />
+        
+        <p className="doll-hint">Psst... drag to rotate me!</p>
       </div>
     </div>
   );

@@ -3,11 +3,11 @@ import Tilt from "react-parallax-tilt";
 
 const projects = [
   {
-    title: "Skill Exchange App",
-    desc: "A full-stack platform designed to help students connect and exchange coding, design, and other technical skills seamlessly.",
-    tech: "React, Node.js, Express",
-    image: "/project_skill.png",
-    link: "#"
+    title: "Photobooth App",
+    desc: "Photobooth: A full-stack photo-sharing platform with features like user authentication, photo uploads, albums, likes, comments, tagging, and follower system. Built using Node.js, Express, MySQL, and Sequelize.",
+   tech: "React, Node.js, Express, MySQL, Sequelize",
+  image: "/project_photobooth.png",
+    link: "http://localhost:5000" 
   },
   {
     title: "Dynamic Portfolio",
@@ -60,7 +60,7 @@ export default function Projects() {
               <p className="modal-tech">{selected.tech}</p>
               
               <div className="modal-actions">
-                <a href={selected.link} className="btn-primary" onClick={(e) => e.preventDefault()}>
+                <a href={selected.link} className="btn-primary">
                   View Live
                 </a>
                 <button className="btn-secondary" onClick={() => setSelected(null)}>
